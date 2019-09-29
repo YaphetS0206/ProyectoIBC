@@ -50,12 +50,13 @@
                             </tr>
                         </thead>
                         <tbody>
+
                         </tbody>     
                        </table>                  
                     </div>
                   </div>    
-              <div class="col-sm-12 col-md-6">
-                <div class="dataTables_filter" id="example_filter">
+             <div class="col-sm-12 col-md-6">
+                <div class="dataTables_filter" id="example_filter"> 
     <!--  <span class="badge badge-pill badge-success">Pagado</span>
       <span class="badge badge-pill badge-danger">No pagado</span> -->
 
@@ -65,14 +66,15 @@
 
     <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header border-bottom-0">
-            <h5 class="modal-title" id="exampleModalLabel">Actualizar Ticket</h5>
+        <div class="modal-content"> 
+          <div class="modal-header border-bottom-0"> 
+          
+           <h5 class="modal-title" id="exampleModalLabel">Actualizar Ticket</h5> 
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form>
+          <form method="POST">
             <div class="modal-body">
                <div class="form-group">
                 <label for="ticket">N° Ticket</label>
@@ -95,19 +97,24 @@
                 <textarea class="form-control" rows="5" id="comentario"></textarea>
               </div>
             </div>
-            <div class="modal-footer border-top-0 d-flex justify-content-center">
-              <button type="submit" class="btn btn-success">Submit</button>
-            </div>
+       <div class="modal-footer border-top-0 d-flex justify-content-center">
+
+              <button type="submit" class="btn btn-success" id="actualizar">actualizar</button>
+            
+            </div> 
           </form>
         </div>
       </div>
-    </div>      
+    </div>    
       
     <!-- jQuery, Popper.js, Bootstrap JS -->
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="js/jquery/jquery-3.4.1.min.js"></script>
     <script src="libreria/bootstrap/js/popper.js"></script>
     <script src="libreria/bootstrap/js/bootstrap.min.js"></script>
-      
+  
     <!-- datatables JS -->
     <script type="text/javascript" src="js/datatables.min.js"></script>    
     <script type="text/javascript" src="js/dataTables.responsive.min.js"></script>    
