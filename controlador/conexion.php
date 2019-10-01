@@ -4,7 +4,6 @@
 $conn =mysqli_connect('localhost','root', '', 'ibc') or 
 	die(mysqli_erro($mysqli));
 
-
 if(isset($_POST['ticket'])&& isset($_POST["recibo"])&& isset($_POST["estado"])&& isset($_POST["comentario"])){
 	
 	$ticket = $_POST['ticket'];
@@ -13,14 +12,11 @@ if(isset($_POST['ticket'])&& isset($_POST["recibo"])&& isset($_POST["estado"])&&
 	$comentario = $_POST['comentario'];
 
 	//  query to update data 
-
-
-
 	$result  = mysqli_query($conn , "UPDATE ticket SET recibo_str='$recibo',id_estado_num='$estado',comentario_str='$comentario'
                 WHERE id_ticket_num='$ticket'");
-	if($result){
+	/*if($result){
 		echo 'data updated';
-	}
+	}*/
 
 }
 

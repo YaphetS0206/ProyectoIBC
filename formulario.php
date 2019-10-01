@@ -57,7 +57,23 @@
                               <tr id="<?php echo $row['id_ticket_num']; ?>">
                            <td data-target="ticket"><?php echo $row['id_ticket_num']; ?></td>
                            <td data-target="recibo"><?php echo $row['recibo_str']; ?></td>
-                            <td data-target="estado"><?php echo $row['id_estado_num']; ?></td>
+                            <td data-target="estado"><?php
+
+                            if( $row['id_estado_num'] ==1)
+                            {// echo 'entro 1';
+                             echo "<span class='badge badge-pill badge-success'>Pagado</span>" ;
+                            }
+                            if( $row['id_estado_num'] ==2)
+                            {//echo 'entro 2';
+                             echo "<span class='badge badge-pill badge-danger'>No pagado</span>" ;
+                            }
+
+                            ?>
+                              
+
+
+
+                            </td>
                             <td data-target="comentario"><?php echo $row['comentario_str']; ?></td>
                        <td><a href="#" data-role="actualizar" class='editor btn btn-info btn-lg' data-id="<?php echo $row['id_ticket_num'] ;?>"  data-toggle=modal data-target='#form'><i class='fa fa-pencil-square-o'></i></a></td>
                         </tr>
