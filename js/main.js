@@ -1,10 +1,6 @@
 
 (function ($) {"use strict";
-    $(document).ready(function() { 
-       
-            listar();
-         
-    });  
+    
     /*==================================================================
     [ Focus input ]*/
     $('.input100').each(function(){
@@ -85,22 +81,98 @@
         
     });
 
+/*=========================================================================aqui va el boton guardar but lo quite */
 
-        var guardar= function(){
-            $("form").on("submit",function(e){
-                e.preventDefault();
+        var editor= function(){
+        $('#dt_ticket').on('click', 'button.editor', function (e) {
+           console.log("hola")
+       
+        e.preventDefault();
+      
+        editor.edit( $(this).closest('tr'), {
+            title: 'Edit record',
+            buttons: 'Update'
+                     } );
+                } );
+             }
+
+
+
+
+$(document).on('click', '#btn_modificar', function(){  
+    console.log("entro al formulario model");
+
+      var ticket_id =  $(this).parents("tr").find("td")[0].innerHTML;
+      console.log(ticket_id);
+
+      var parametros ={ 
+                        "ticket_id":'ticketid'
+                    };
+           $.ajax({
+             data: {"ticket_id" : 'ticketid'},
+            type: "POST",
+            dataType: "json",
+             url: "fetch.php",
+                success:function(data){  
+                    alert(data+'entro a data');
+                     $('#ticket').val(data.id_ticket_num);  
+                     $('#recibo').val(data.recibo_str);  
+                    // $('#estado').val(data.id_estado_num);  
+                     $('#comentario').val(data.comentario_str);   
+                }  
+           }); 
+      });  
+ $(document).ready(function() {    
+        $('#dt_ticket').DataTable({
+        //para cambiar el lenguaje a español
+          "responsive": true,
+            "language": {
+                            "sProcessing":     "Procesando...",
+                            "sLengthMenu":     "Mostrar _MENU_ registros",
+                            "sZeroRecords":    "No se encontraron resultados",
+                            "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                            "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                            "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                            "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                            "sInfoPostFix":    "",
+                            "sSearch":         "Buscar:",
+                            "sUrl":            "",
+                            "sInfoThousands":  ",",
+                            "sLoadingRecords": "Cargando...",
+                            "oPaginate": {
+                                "sFirst":    "Primero",
+                                "sLast":     "Último",
+                                "sNext":     "Siguiente",
+                                "sPrevious": "Anterior"
+                            },
+                            "oAria": {
+                                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                            }
+                        }   
+        });     
+    });  
+
+
+        /*   var guardar= function(){
+            $("#form").on("click",function(e){
+                console.log(" recibio el console log");
+              e.preventDefault();
                 var frm=$(this).serialize();
 
                 $.ajax({
-                    method:"POST",
-                    url:"actualizar.php",
-                    data:frm
+                    "method":"POST",
+                    "url":"actualizar.php",
+                   "data":"frm"
                 }).done(function(info){
                     console.log(info);
                 });
             });
-        }
+        }*/
 
+
+
+/*
         var obtener_data_edit= function(tbody,table){
             $(tbody).on("click","button.editar",function(){
                 var data =table.row($(this).parents("tr") ).data();
@@ -111,39 +183,12 @@
             });
         }
 
-
-        var listar=function(){
-            console.log("Entro en el listar");
-            var table=$("#dt_ticket").DataTable({
-                "responsive": true,
-                "ajax":
-                {
-                    "method":"POST",
-                    "url":"listar.php"
-                },
-                "columns":[
-                {"data":"id_ticket_num"},
-                {"data":"recibo_str"},
-                {"data":"id_estado_num"},
-                {"data":"comentario_str"},
-                {"defaultContent":"<button type='button' class='editar btn btn-primary'data-toggle='modal'><i class='fa fa-pencil-square-o'></i></button>"}
-                ],
-                "columnDefs" : [
-                        { targets : [2],
-                          render : function (data, type, row) {
-                             return data == '1' ? "<span class='badge badge-pill badge-success'>Pagado</span>" : " <span class='badge badge-pill badge-danger'>No pagado</span>"
-                          }
-                        }
-                   ]
-
-                
-            });
+/*===========================LISTAR========================================================= */
+    
+                    
+/*===========================EDITAR========================================================= */
 
 
-              console.log("salio en el listar");
-             obtener_data_edit("#dt_ticket tbody",table)
-        }
- 
 
-
-})(jQuery);
+  
+})(jQuery); 
